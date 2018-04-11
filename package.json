@@ -64,6 +64,7 @@
     "not ie <= 8"
   ],
   "jest": {
+    "verbose": true,
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js, vue}",
