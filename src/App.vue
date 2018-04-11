@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <message-list :messages="messages"></message-list>
+    <form></form>
   </div>
 </template>
 
 <script>
 import MessageList from './components/MessageList'
+import Form from './components/Form'
 
 export default {
   name: 'App',
   components: {
-    MessageList
+    MessageList,
+    Form
   },
   data: () => ({
     messages: [

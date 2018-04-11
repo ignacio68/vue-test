@@ -4,7 +4,7 @@ import Message from '../src/components/Message'
 const CREATECMP = propsData => mount(Message, { propsData })
 
 describe('Message.test.js', () => {
-	let cmp 
+	let cmp
 
 	describe('Properties', () => {
 		it('Tiene una property "message"', () => {
@@ -46,11 +46,28 @@ describe('Message.test.js', () => {
 		})
 
 		it('llama a handleClick cuando hace click en message', () => {
-			const stub = jest.fn()
-			cmp.setMethods({ handleClick: stub })
+      const stub = jest.fn()
+      cmp.setMethods({ handleClick: stub })
 
-			const el = cmp.find('.message').trigger('click')
-			expect(stub).toBeCalled()
+      const el = cmp.find('.message').trigger('click')
+      expect(stub).toBeCalled
 		})
+
+    it('emite un message-clicked evento cuando un método handleClick es llamado', () => {
+      const stub = jest.fn()
+      cmp.vm.$on('message-clicked', stub)
+      cmp.vm.handleClick()
+
+      expect(stub).toBeCalledWith('Cat')
+    })
+
+    /** it('Llama a handleMessageClick cuando sucede @message-click', () => {
+      const stub = jest.fn()
+      cmp.setMethods({ handleMessageClick: stub})
+      // cmp.update()
+
+      const el = cmp.find(Message).vm.$emit('message-clicked', 'cat')
+      expect(stub),toBeCalledWith('Cat')
+    }) **/
 	})
 })
