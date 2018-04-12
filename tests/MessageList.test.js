@@ -6,6 +6,24 @@ describe('MessageList.test.js', () => {
   let cmp
 
   beforeEach(() => {
+    const messageWrapper = {
+      render (h) {
+        return h(Message, { props: { message: 'hey'} })
+      }
+    }
+
+    cmp = mount(MessageList, {
+      slots: {
+        default: messageWrapper
+      }
+    })
+  })
+
+  it('Messages es insertado en un elemento ul.list-messages', () => {
+    const list = cmp.find('ul.list-messages')
+    expect(list.find(Message).isVueInstance()).toBe(true)
+  })
+/**  beforeEach(() => {
     cmp = mount(MessageList, { // Creamos una copia del componente original
       propsData: { // sobreescribimos las props con 'propsData'
         messages: ['Cat']
@@ -49,5 +67,5 @@ describe('MessageList.test.js', () => {
 
   // it('Message tiene el style margin-top: 10', () => {
   //   expect(cmp.find(Message).hasStyle('margin-top', '10')).toBe(true)
-  //})
+  //}) */
 })

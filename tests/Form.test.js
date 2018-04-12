@@ -1,12 +1,33 @@
+// jest.mock('axios', () => ({
+//  get: jest.fn(() => Promise.resolve({ 3 }))
+// }))
+
 import { shallow } from '@vue/test-utils'
 import Form from '../src/components/Form'
+import axios from 'axios'
 
 describe('Form.test.js', () => {
   let cmp
 
   beforeEach(() => {
     cmp = shallow(Form)
+    jest.resetModules()
+    jest.clearAllMocks()
   })
+
+/*  describe('Methods', () => {
+    it('llama a axios.get y chequea el resultado de la promesa', async() => {
+      const result = await cmp.vm.onSubmit('an')
+
+      expect(result).toEqual({ data: [3] })
+      expect(cmp.vm.results).toEqual([3])
+      expect(axios.get).toBeCalledWith('https://jsonplaceholder.typecode.com/post?q=an')
+    }) 
+
+    // it('axios no debería ser llamado aquí', () => {
+    //   expect(axios.get).toBeCalledWith('https://jsonplaceholder.typecode.com/post?q=an')
+    // })
+  }) */
 
   describe('Properties', () => {
     it('devuelve el string en orden normal si la property reversed no es cierta', () => {

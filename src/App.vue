@@ -1,26 +1,39 @@
 <template>
   <div id="app">
-    <message-list :messages="messages"></message-list>
-    <form></form>
+    <message-list>
+      <message
+        @message-clicked="handleMessageClick" 
+        :message="message" 
+        v-for="message in messages"
+        :key="message"/>
+    </message-list>
+    <!--form></form-->
   </div>
 </template>
 
 <script>
 import MessageList from './components/MessageList'
-import Form from './components/Form'
+import Message from './components/Message'
+// import Form from './components/Form'
 
 export default {
   name: 'App',
   components: {
     MessageList,
-    Form
+    Message
+    //Form
   },
   data: () => ({
     messages: [
       'Hey John',
       'Howdy Paco'
     ]
-  })
+  }),
+  methods: {
+    handleMessageClick(message) {
+      console.log(message)
+    }
+  }
 }
 </script>
 
